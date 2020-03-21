@@ -1,0 +1,47 @@
+# espanso configuration file
+
+# This is the default configuration file, change it as you like it
+# You can refer to the official documentation:
+# https://espanso.org/docs/
+
+# Matches are the substitution rules, when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ']hey'
+    replace: 'Hi there!'
+  - trigger: ']wh'
+    replace: 'Will Harrison'
+  - trigger: ']cover'
+    replace: "I'd like to learn more about the {{role}} role you have available at {{company}}. I am an experienced Javascript Developer with a focus on the React ecosystem, including Native, Redux, modern hooks, and context. I have experience with Node, Express, and Apollo GraphQL servers. I have a background as a Retail Data Analyst, with 15 years of experience in SQL, and experience with noSql databases like Mongodb and Rethinkdb.\n\nIf my skills and experience would add to the team, I'd love to talk more with you about the role.\n\nThanks,\nWill Harrison"
+    vars:
+      - name: 'role'
+        type: 'dummy'
+        params:
+          echo: 'XXXroleXX'
+      - name: 'company'
+        type: 'dummy'
+        params:
+          echo: 'XXXcompanyXXX'
+  - trigger: ']linkedin'
+    replace: 'https://linkedin.com/in/willharrison'
+  - trigger: ']github'
+    replace: 'https://github.com/will-harrison'
+
+  # Dates
+  - trigger: ']dt'
+    replace: '{{mydate}}'
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: '%m/%d/%Y'
+
+  # Shell commands
+  - trigger: ':shell'
+    replace: '{{output}}'
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: 'echo Hello from your shell'
